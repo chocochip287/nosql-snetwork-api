@@ -1,7 +1,10 @@
 // more to come
-
+// Imports express
 const express = require("express");
+// Imports mongodb
 const mongodb = require("mongodb").MongoClient;
+// Imports ObjectID() function
+const ObjectId = require("mongodb").ObjectId;
 
 const app = express();
 const PORT = 6505;

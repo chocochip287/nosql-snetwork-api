@@ -1,6 +1,16 @@
 // more to come
+const mongoose = require("mongoose");
 
 // get all users
+
+app.get("/read", (req, res) => {
+  db.collection("users")
+    .find()
+    .toArray((err, results) => {
+      if (err) throw err;
+      res.send(results);
+    });
+});
 
 // get a single user by its _id and populate thought and friend data
 
