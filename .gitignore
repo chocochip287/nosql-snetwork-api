@@ -1,6 +1,7 @@
 student-assets
 .env
 assignment.md
+package.json
 
 # Logs
 logs
