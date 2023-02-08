@@ -1,7 +1,7 @@
 student-assets
 .env
 assignment.md
-package.json
+package-lock.json
 
 # Logs
 logs
