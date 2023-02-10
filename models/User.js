@@ -1,15 +1,15 @@
-// more to come
-
 // Import Mongoose
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
 // Friends subdocument
 
-const friendSchema = new mongoose.Schema({
+const friendSchema = new Schema({
     name: {type: String, required: true }
-})
+});
 
-const userSchema = new mongoose.Schema({
+// Schema for User model
+
+const userSchema = new Schema({
     username: { type: String, required: true, unique: true, trim: true },
     email: { type: String, required: true, unique: true, validate: {
         // email validator
@@ -20,17 +20,27 @@ const userSchema = new mongoose.Schema({
         },
     },
     // thoughts (array of _id values referencing Thought)
-    
+    thoughts: [thoughtSchema],
     // friends (array of _id values referencing User)
-    friends: [friendSchema],
-    
+    friends: [friendSchema], 
+    },
+    {
+        toJSON: {
+            virtuals: true,
+        },
+        id: false,
+    }
+);
+
+// virtual to retrieve friend count
+userSchema.virtual("friendCount").get(function () {
+    return this.friends.length;
 });
 
 // building a model based on userSchema
-const User = mongoose.model("User", userSchema);
+const User = model("User", userSchema);
 
 // error handler
-
 const handleError = (err) => console.error(err);
 
 module.exports = User;
