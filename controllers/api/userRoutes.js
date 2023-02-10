@@ -1,6 +1,8 @@
 // more to come
 const mongoose = require("mongoose");
 
+// api/users endpoint - use this after the localhost link
+
 // get all users
 
 app.get("/read", (req, res) => {

@@ -9,16 +9,21 @@ const mongodb = require("mongodb").MongoClient;
 const ObjectId = require("mongodb").ObjectId;
 // Model import
 // const { Item } = require("./models");
+// Routes import
+const routes = require("./controllers");
 
 const app = express();
 const PORT = 6505;
 
-// Connection string for local MongoDB instance
+// middleware
+app.use(express.urlencoded({ extended: true}));
+app.use(express.json());
+app.use(routes);
+
+// Connection string for local MongoDB instance, referencing ./config/connection.js
 
 db.once("open", () => {
     app.listen(PORT, () => {
         console.log(`API server is listening on port ${PORT}.`);
     })
 })
-
-app.use(express.json());

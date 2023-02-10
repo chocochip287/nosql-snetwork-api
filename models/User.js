@@ -3,6 +3,12 @@
 // Import Mongoose
 const mongoose = require("mongoose");
 
+// Friends subdocument
+
+const friendSchema = new mongoose.Schema({
+    name: {type: String, required: true }
+})
+
 const userSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true, trim: true },
     email: { type: String, required: true, unique: true, validate: {
@@ -13,9 +19,10 @@ const userSchema = new mongoose.Schema({
             message: newUser => `${newUser.email} is not a valid email address.`
         },
     },
-    // thoughts,
+    // thoughts (array of _id values referencing Thought)
     
-    // friends,
+    // friends (array of _id values referencing User)
+    friends: [friendSchema],
     
 });
 
