@@ -1,7 +1,7 @@
 // Import Mongoose
 const { Schema, model, Types } = require("mongoose");
 
-// Friends subdocument
+// Friends subdocument - may not need this as I think the intent is for the friends post route to update that array on its own.
 
 const friendSchema = new Schema({
     name: { type: String, required: true }

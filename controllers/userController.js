@@ -1,3 +1,5 @@
+// model import
+const { User } = require("../models/User");
 
 module.exports = {
   // route functionality tester
@@ -20,5 +22,5 @@ module.exports = {
   // post to add a new friend to a user's friend list
 
   // delete to remove a friend from a user's friend list
-  
+
 }

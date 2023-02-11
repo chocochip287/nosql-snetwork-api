@@ -17,7 +17,7 @@ const reactionSchema = new Schema({
     reactionBody: { type: String, required: true, maxLength: 280 },
     username: { type: String, required: true },
     // createdAt needs a getter method to format the date
-    createdAt: { type: Date, default: moment().format('MMMM Do YYYY, h:mm:ss a') }
+    createdAt: { type: String, default: moment().format('MMMM Do YYYY') }
 });
 
 // Thought schema
@@ -28,7 +28,7 @@ const thoughtSchema = new Schema({
         thoughtText: { type: String, required: true, minLength: 1, maxLength: 280 },
         // createdAt (date, set default value to current timestamp)
         // createdAt needs getter method to format timestamp
-        createdAt: { type: Date, default: moment().format('MMMM Do YYYY, h:mm:ss a') },
+        createdAt: { type: String, default: moment().format('MMMM Do YYYY') },
         // username (the user that created this thoght; string, required
         username: { type: String, required: true },
         // reactions (these are like replies; array of nested documents created with the reactionSchema)
@@ -55,4 +55,4 @@ const Thought = model("Thought", thoughtSchema);
 
 const handleError = (err) => console.error(err);
 
-module.exports = { Thought };
+module.exports = Thought;
