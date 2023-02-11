@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const {
     testController
-} = require("../../controllers/userController");
+} = require("../../controllers/thoughtsController");
 
-// /api/users endpoint
+// /api/thoughts endpoint
 
 // test route
 router.route("/testytest").get(testController);
