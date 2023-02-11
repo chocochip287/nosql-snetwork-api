@@ -1,7 +1,8 @@
-// more to come - going to completely redo this to mimic the controller vs. routes layout complete with exports from the lessons.
+// more to come - going to completely redo routes and controllers to mimic the structure shown in the lessons
 
 module.exports = {
+  // route functionality tester
   testController(req, res) {
-    res.console.log("Hey, you made it!");
+    res.send("Hey, you made it!");
   }
 }

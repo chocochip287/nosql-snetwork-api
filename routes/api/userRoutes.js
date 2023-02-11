@@ -3,7 +3,7 @@ const {
     testController
 } = require("../../controllers/userController");
 
-// "users" endpoint
+// /api/users endpoint
 
 router.route("/").get(testController);
 
