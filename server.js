@@ -1,17 +1,9 @@
-// more to come
 // Imports express
 const express = require("express");
+// Imports routes
 const routes = require("./routes");
 // Imports connection
 const db = require("./config/connection");
-// Imports mongodb
-const mongodb = require("mongodb").MongoClient;
-// Imports ObjectID() function
-const ObjectId = require("mongodb").ObjectId;
-// Model import
-// const { Item } = require("./models");
-// Routes import
-
 
 const app = express();
 const PORT = 6505;

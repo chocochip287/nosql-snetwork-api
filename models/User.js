@@ -1,10 +1,10 @@
 // Import Mongoose
-const { Schema, model } = require("mongoose");
+const { Schema, model, Types } = require("mongoose");
 
 // Friends subdocument
 
 const friendSchema = new Schema({
-    name: {type: String, required: true }
+    name: { type: String, required: true }
 });
 
 // Schema for User model
@@ -18,13 +18,23 @@ const userSchema = new Schema({
             },
             message: newUser => `${newUser.email} is not a valid email address.`
         },
-    },
+        },
     // thoughts (array of _id values referencing Thought)
-    thoughts: [thoughtSchema],
+    thoughts: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Thought",
+        }
+        ],
     // friends (array of _id values referencing User)
-    friends: [friendSchema], 
+    friends: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+        }
+        ], 
     },
-    {
+        {
         toJSON: {
             virtuals: true,
         },
