@@ -7,9 +7,20 @@ module.exports = {
     res.send("Hey, you made it!");
   },
   // get all users
-
+  getAllUsers(req, res) {
+    User.find()
+      .then((users) => res.json(users))
+      .catch((err) => res.status(500).json(err));
+  },
   // get a single user by its _id
-
+  getOneUser(req, res) {
+    User.findOne({ _id: req.params.id})
+      .select("-__v")
+      .then((thisUser) =>
+        !thisUser ? res.status(404).json({ message: `No user with the provided ID.`}) : res.json(thisUser)
+      )
+      .catch((err) => res.status(500).json(err))
+  }
   // post a new user, e.g. { "username": "beepboop", "email": "beepboop@beepmail.com" }
 
   // put to update a user by its _id
