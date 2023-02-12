@@ -22,7 +22,7 @@ Once the repo has been cloned to your personal machine, run npm i in your machin
 
 Each route file explains what HTML method functionality is available for each route. Routes that require inputs beyond URL inputs have brief commentary stating what body inputs are required and their formatting.
 
-Additionally, [this video](update a'comin') demonstrates all of the application's functionality.
+Additionally, [this video](https://www.youtube.com/watch?v=8n3Luv80eWQ) demonstrates all of the application's functionality.
 
 ## Tests
 
