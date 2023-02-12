@@ -3,7 +3,9 @@ const {
     testController,
     getAllUsers,
     getOneUser,
-    createUser
+    createUser,
+    updateUser,
+    deleteUser
 } = require("../../controllers/userController");
 
 // /api/users endpoint
@@ -15,8 +17,8 @@ router.route("/testytest").get(testController);
 
 router.route("/all").get(getAllUsers);
 
-// get one user, /api/users/:id
-router.route("/:id").get(getOneUser);
+// get one user, /api/users/:id | update one user, /api/users/:id, { "username": "new username"} in body | delete one user, /api/users/:id
+router.route("/:id").get(getOneUser).put(updateUser).delete(deleteUser);
 
 // create new user, /api/users/add
 router.route("/add").post(createUser);

@@ -1,5 +1,6 @@
 // model import
 const User = require("../models/User");
+const ObjectId = require("mongoose");
 
 module.exports = {
   // route functionality tester
@@ -27,10 +28,23 @@ module.exports = {
       .then((newUser) => res.json(newUser))
       .catch((err) => res.status(500).json(err));
   },
-
   // put to update a user by its _id
-
+  updateUser(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: req.body }
+    )
+    .then((updatedUser) => res.json(updatedUser))
+    .catch((err) => res.status(500).json(err));
+  },
   // delete to remove a user by its _id
+  deleteUser(req, res) {
+    User.findOneAndDelete({ _id: req.params.id })
+    .then((thisUser) => 
+      thisUser ? res.json(`The user with ID ${req.params.id} has been deleted.`) : res.status(404).json(`No user with the given ID exists.`)
+    )
+    .catch((err) => res.status(500).json(err))
+  }
 
   // bonus: remove a user's associated thoughts when deleted
 
