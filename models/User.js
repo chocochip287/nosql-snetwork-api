@@ -1,11 +1,5 @@
 // Import Mongoose
-const { Schema, model, Types } = require("mongoose");
-
-// Friends subdocument - may not need this as I think the intent is for the friends post route to update that array on its own.
-
-const friendSchema = new Schema({
-    name: { type: String, required: true }
-});
+const { Schema, model } = require("mongoose");
 
 // Schema for User model
 
@@ -49,8 +43,5 @@ userSchema.virtual("friendCount").get(function () {
 
 // building a model based on userSchema
 const User = model("User", userSchema);
-
-// error handler
-const handleError = (err) => console.error(err);
 
 module.exports = User;
