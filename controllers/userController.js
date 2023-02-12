@@ -1,5 +1,5 @@
 // model import
-const { User } = require("../models/User");
+const User = require("../models/User");
 
 module.exports = {
   // route functionality tester
@@ -12,7 +12,7 @@ module.exports = {
       .then((users) => res.json(users))
       .catch((err) => res.status(500).json(err));
   },
-  // get a single user by its _id
+  // get a single user by its _id - remember that ids change due to reseeding on server launch
   getOneUser(req, res) {
     User.findOne({ _id: req.params.id})
       .select("-__v")
@@ -20,8 +20,13 @@ module.exports = {
         !thisUser ? res.status(404).json({ message: `No user with the provided ID.`}) : res.json(thisUser)
       )
       .catch((err) => res.status(500).json(err))
-  }
+  },
   // post a new user, e.g. { "username": "beepboop", "email": "beepboop@beepmail.com" }
+  createUser(req, res) {
+    User.create(req.body)
+      .then((newUser) => res.json(newUser))
+      .catch((err) => res.status(500).json(err));
+  },
 
   // put to update a user by its _id
 

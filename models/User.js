@@ -18,21 +18,21 @@ const userSchema = new Schema({
             },
             message: newUser => `${newUser.email} is not a valid email address.`
         },
-        },
+    },
     // thoughts (array of _id values referencing Thought)
     thoughts: [
         {
             type: Schema.Types.ObjectId,
             ref: "Thought",
         }
-        ],
+    ],
     // friends (array of _id values referencing User)
     friends: [
         {
             type: Schema.Types.ObjectId,
             ref: "User",
         }
-        ], 
+    ], 
     },
         {
         toJSON: {
