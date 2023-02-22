@@ -17,10 +17,10 @@ router.route("/testytest").get(testController);
 
 router.route("/all").get(getAllThoughts);
 
-// get one thought, /api/thoughts/:id | update one thought, /api/thoughts/:id, { "thoughtText": "new thought text"} in body | delete one thought, /api/users/:id
+// get one thought, /api/thoughts/:id | update one thought, /api/thoughts/:id, { "thoughtText": "new thought text" } in body | delete one thought, /api/thoughts/:id
 router.route("/:id").get(getOneThought).put(updateThought).delete(deleteThought);
 
-// create new user, /api/users/add
+// create new user, /api/thoughts/add
 router.route("/add").post(createThought);
 
 module.exports = router;

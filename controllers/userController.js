@@ -41,11 +41,19 @@ module.exports = {
     User.findOneAndDelete({ _id: req.params.id })
     .then(res.json(`The user with ID ${req.params.id} has been deleted.`))
     .catch((err) => res.status(500).json(err))
-  }
+  },
   // bonus: remove a user's associated thoughts when deleted
 
   // :userId/friends/:friendId
   // post to add a new friend to a user's friend list
+  friendUser(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.id },
+      { $push: { friends: req.params.friendId }}
+    )
+    .then((updatedUser) => res.json(updatedUser))
+    .catch((err) => res.status(500).json(err))
+  }
 
   // delete to remove a friend from a user's friend list
 
