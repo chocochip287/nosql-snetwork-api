@@ -15,7 +15,8 @@ module.exports = {
   // get a single user by its _id - remember that ids change due to reseeding on server launch
   getOneUser(req, res) {
     User.findOne({ _id: req.params.id})
-      .select("-__v")
+      // this populate shows the full document for any of the selected user's friends
+      .populate({ path: "friends" }) //, select: "-__v" 
       .then((thisUser) =>
         !thisUser ? res.status(404).json({ message: `No user with the provided ID.`}) : res.json(thisUser)
       )
@@ -44,7 +45,7 @@ module.exports = {
   },
   // bonus: remove a user's associated thoughts when deleted
 
-  // :userId/friends/:friendId
+  // :userId/friend/:friendId
   // post to add a new friend to a user's friend list
   friendUser(req, res) {
     User.findOneAndUpdate(
@@ -53,8 +54,14 @@ module.exports = {
     )
     .then((updatedUser) => res.json(updatedUser))
     .catch((err) => res.status(500).json(err))
-  }
-
+  },
   // delete to remove a friend from a user's friend list
-
+  deleteFriend(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.id },
+      { $pull: { friends: req.params.friendId }}
+    )
+    .then((updatedUser) => res.json(updatedUser))
+    .catch((err) => res.status(500).json(err))
+  }
 }
